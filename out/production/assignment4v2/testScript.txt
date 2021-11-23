@@ -1,0 +1,9 @@
+load res/koala.ppm koala
+brighten 10 koala koala-brighter 
+vertical-flip koala koala-vertical
+horizontal-flip koala-vertical koala-vertical-horizontal
+value-component koala koala-greyscale
+save res/koala-brighter.ppm koala-brighter
+save res/koala-gs.ppm koala-greyscale
+load res/venice.ppm koala
+save res/venice2.ppm koala
