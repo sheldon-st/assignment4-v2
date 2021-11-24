@@ -59,17 +59,28 @@ public class SwingView extends JFrame implements ActionListener, ItemListener, L
   private JList<Integer> listOfIntegers;
 
 
-  String[] images = {"Red", "Green", "Blue", "Intensity"};
-  JLabel[] imageLabel = new JLabel[images.length];
-  JScrollPane[] imageScrollPane = new JScrollPane[images.length];
+  String sourceImage = "Source Image:";
+  JLabel sourceLabel = new JLabel();
+  JScrollPane s1ScrollPlane = new JScrollPane();
 
+  String[] histogramTypes = {"Red", "Green", "Blue", "Intensity"};
+  JLabel[] histogramLabels = new JLabel[histogramTypes.length];
+
+
+  JScrollPane[] h1ScrollPane = new JScrollPane[histogramTypes.length];
+
+  String destImage = "Dest Image:";
+  JLabel destLabel = new JLabel();
+  JScrollPane d1ScrollPlane = new JScrollPane();
+  JLabel[] histogram2Labels = new JLabel[histogramTypes.length];
+  JScrollPane[] h2ScrollPane = new JScrollPane[histogramTypes.length];
 
 
 
   public SwingView() {
     super();
     setTitle("Image Manager");
-    setSize(1028, 400);
+    setSize(1200, 800);
 
     mainPanel = new JPanel();
 
@@ -78,6 +89,8 @@ public class SwingView extends JFrame implements ActionListener, ItemListener, L
     //scroll bars around this main panel
     mainScrollPane = new JScrollPane(mainPanel);
     add(mainScrollPane);
+
+
 
     //JPanel histogramPanel =
     //mainPanel.add();
@@ -93,35 +106,72 @@ public class SwingView extends JFrame implements ActionListener, ItemListener, L
   public void getHistogramPanel() {
     System.out.println("attempting to get hPanel: ");
     //show an image with a scrollbar
-    JPanel imagePanel = new JPanel();
+
+
+    JPanel previewPanel = new JPanel();
+    previewPanel.setLayout(new GridLayout(1, 2, 10, 10));
+    previewPanel.setBorder(BorderFactory.createTitledBorder("Preview"));
+
+
+    JPanel sourcePanel = new JPanel();
+
     //a border around the panel with a caption
-    imagePanel.setBorder(BorderFactory.createTitledBorder("Histogram [Original]"));
-    imagePanel.setLayout(new GridLayout(1, 0, 10, 10));
-    //imagePanel.setMaximumSize(null);
+    sourcePanel.setBorder(BorderFactory.createTitledBorder("Source [Original]"));
+    sourcePanel.setLayout(new GridLayout(1, 2, 10, 10));
 
+    sourceLabel = new JLabel();
+    s1ScrollPlane = new JScrollPane(sourceLabel);
+    s1ScrollPlane.setPreferredSize(new Dimension(256, 512));
 
-    for (int i = 0; i < images.length; i++) {
-      imageLabel[i] = new JLabel();
-      imageScrollPane[i] = new JScrollPane(imageLabel[i]);
-      imageScrollPane[i].setPreferredSize(new Dimension(256, 256));
-      imagePanel.add(imageScrollPane[i]);
+    JPanel h1Panel = new JPanel();
+    //a border around the panel with a caption
+    h1Panel.setBorder(BorderFactory.createTitledBorder("Histogram [Original]"));
+    h1Panel.setLayout(new GridLayout(4, 1, 10, 10));
+
+    for (int i = 0; i < histogramTypes.length; i++) {
+      histogramLabels[i] = new JLabel();
+      h1ScrollPane[i] = new JScrollPane(histogramLabels[i]);
+      h1ScrollPane[i].setPreferredSize(new Dimension(100, 100));
+      h1Panel.add(h1ScrollPane[i]);
     }
 
-    JPanel imagePanel2 = new JPanel();
+
+    sourcePanel.add(h1Panel);
+    sourcePanel.add(s1ScrollPlane);
+
+    JPanel destPanel = new JPanel();
+
     //a border around the panel with a caption
-    imagePanel.setBorder(BorderFactory.createTitledBorder("Histogram [Edited]"));
-    imagePanel.setLayout(new GridLayout(1, 0, 10, 10));
-    //imagePanel.setMaximumSize(null);
+    destPanel.setBorder(BorderFactory.createTitledBorder("Dest [Edited]"));
+    destPanel.setLayout(new GridLayout(1, 2, 10, 10));
 
+    destLabel = new JLabel();
+    d1ScrollPlane = new JScrollPane(destLabel);
+    d1ScrollPlane.setPreferredSize(new Dimension(256, 512));
 
-    for (int i = 0; i < images.length; i++) {
-      imageLabel[i] = new JLabel();
-      imageScrollPane[i] = new JScrollPane(imageLabel[i]);
-      imageScrollPane[i].setPreferredSize(new Dimension(256, 256));
-      imagePanel2.add(imageScrollPane[i]);
+    JPanel h2Panel = new JPanel();
+    //a border around the panel with a caption
+    h2Panel.setBorder(BorderFactory.createTitledBorder("Histogram [Edited]"));
+    h2Panel.setLayout(new GridLayout(4, 1, 10, 10));
+
+    for (int i = 0; i < histogramTypes.length; i++) {
+      histogram2Labels[i] = new JLabel();
+      h2ScrollPane[i] = new JScrollPane(histogram2Labels[i]);
+      h2ScrollPane[i].setPreferredSize(new Dimension(100, 100));
+      h2Panel.add(h2ScrollPane[i]);
     }
+    h2Panel.setMaximumSize(new Dimension(200, 600));
 
-    mainPanel.add(imagePanel);
+
+    destPanel.add(h2Panel);
+    destPanel.add(d1ScrollPlane);
+
+    previewPanel.add(sourcePanel);
+    previewPanel.add(destPanel);
+
+    mainPanel.add(previewPanel);
+   // mainPanel.add(imagePanel2);
+
   }
 
 
@@ -305,10 +355,32 @@ public class SwingView extends JFrame implements ActionListener, ItemListener, L
     this.add(panel);
   }
 
+
+
+
+
   @Override
-  public void updateHistogram(ImageIcon[] images) {
+  public void updateSourceHistogram(ImageIcon[] images) {
     for (int i = 0; i <  images.length; i++) {
-      imageLabel[i].setIcon(images[i]);
+      histogramLabels[i].setIcon(images[i]);
     }
+  }
+
+  @Override
+  public void updateSourceImage(ImageIcon image) {
+    sourceLabel.setIcon(image);
+  }
+
+
+  @Override
+  public void updatePreviewHistogram(ImageIcon[] images) {
+    for (int i = 0; i <  images.length; i++) {
+      histogramLabels[i].setIcon(images[i]);
+    }
+  }
+
+  @Override
+  public void updatePreviewImage(ImageIcon image) {
+    sourceLabel.setIcon(image);
   }
 }

@@ -1,5 +1,7 @@
 package model;
 
+import javax.swing.*;
+
 /**
  * This interface represents an image model.
  */
@@ -16,4 +18,11 @@ public interface IModel {
    * @return image array
    */
   int[][][] getImage();
+
+  /**
+   * Gets an ImageIcon of the image.
+   * /
+   **/
+  ImageIcon getImageIcon();
+
 }

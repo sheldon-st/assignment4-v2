@@ -1,5 +1,7 @@
 package model;
 
+import javax.swing.*;
+
 /**
  * This class represents a single image model.
  */
@@ -52,6 +54,15 @@ public class SingleImageModel implements IModel {
   }
 
   /**
+   * Gets an ImageIcon of the image.
+   * /
+   **/
+  @Override
+  public ImageIcon getImageIcon() {
+    return new ImageIcon(ImageUtil.toBuffer(this.image, this.image[0].length, this.image.length));
+  }
+
+  /**
    * Overrides the equals method.
    */
   @Override
@@ -63,6 +74,8 @@ public class SingleImageModel implements IModel {
     return false;
   }
 
+
+
   /**
    * Overrides the hashCode method.
    */
@@ -70,4 +83,6 @@ public class SingleImageModel implements IModel {
   public int hashCode() {
     return image.hashCode();
   }
+
+
 }

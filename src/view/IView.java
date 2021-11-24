@@ -34,5 +34,22 @@ public interface IView {
   /**
    * Updates the historgram
    */
-  void updateHistogram(ImageIcon[] images);
+  void updateSourceHistogram(ImageIcon[] images);
+
+  /**
+   * Updates the current image.
+   */
+  void updateSourceImage(ImageIcon image);
+
+  /**
+   * Update preview image.
+   */
+  void updatePreviewImage(ImageIcon image);
+
+  /**
+   * Update the histogram of the preview image.
+   */
+  void updatePreviewHistogram(ImageIcon[] images);
+
+
 }

@@ -3,6 +3,7 @@ package model;
 import java.util.HashMap;
 
 
+
 /**
  * Class to represent IME model, which holds a gallery of loaded images and edits made to them.
  */
@@ -28,8 +29,8 @@ public class IMEModel {
    * @param source Name the name of the image to get
    * @return The image with the given name.
    */
-  public SingleImageModel getImage(String source) {
-    return (SingleImageModel) images.get(source);
+  public IModel getImage(String source) {
+    return images.get(source);
   }
 
   /**
@@ -45,6 +46,9 @@ public class IMEModel {
 
     this.editedImage = image;
     this.editedHistogram = new HistogramModel((SingleImageModel) image);
+
+    // this.editedImage = image;
+   //  this.editedHistogram = new HistogramModel((IModel) image);
   }
 
   /**
@@ -53,7 +57,7 @@ public class IMEModel {
    * @param imageName Name of the image to save
    */
   public void saveImage(String imagePath, String imageName) {
-    SingleImageModel image = (SingleImageModel) images.get(imageName);
+    IModel image = images.get(imageName);
 
     ImageUtil.writeImage(image.getImage(), image.getImage()[0].length, image.getImage().length,
             imagePath);

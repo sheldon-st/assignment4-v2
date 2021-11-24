@@ -16,6 +16,7 @@ import controller.commands.Load;
 import controller.commands.Save;
 import controller.commands.VerticalFlip;
 import model.IMEModel;
+import model.ImageUtil;
 import view.IView;
 
 /**
@@ -149,13 +150,17 @@ public class IMECommandController implements IController {
           }
           if (cmd != null) {
             cmd.startProgram(model);
-  view.updateHistogram(model.currentHistogram.getHistogramImages());
+            view.updateSourceImage(model.currentImage.getImageIcon());
+            view.updateSourceHistogram(model.currentHistogram.getHistogramImages());
+            view.updatePreviewImage(model.currentImage.getImageIcon());
+            view.updatePreviewHistogram(model.currentHistogram.getHistogramImages());
             view.showString("Executed Command: " + Arrays.toString(line));
           }
         } catch (NullPointerException e) {
           view.showString("Cannot find image:" + Arrays.toString(line));
         } catch (IndexOutOfBoundsException e) {
           view.showString("Invalid Command Parameters:" + Arrays.toString(line));
+          System.out.println(e.getMessage());
         } catch (FileNotFoundException e) {
           view.showString("Cannot find file:" + Arrays.toString(line));
         } catch (IOException e) {

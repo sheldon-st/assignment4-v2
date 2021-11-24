@@ -46,9 +46,40 @@ public class TextView implements view.IView {
    * @param images
    */
   @Override
-  public void updateHistogram(ImageIcon[] images) {
+  public void updateSourceHistogram(ImageIcon[] images) {
 
   }
+
+  /**
+   * Updates the current image.
+   *
+   * @param image
+   */
+  @Override
+  public void updateSourceImage(ImageIcon image) {
+
+  }
+
+  /**
+   * Update preview image.
+   *
+   * @param image
+   */
+  @Override
+  public void updatePreviewImage(ImageIcon image) {
+
+  }
+
+  /**
+   * Update the histogram of the preview image.
+   *
+   * @param images
+   */
+  @Override
+  public void updatePreviewHistogram(ImageIcon[] images) {
+
+  }
+
 
   /**
    * Prints the menu to the view.
