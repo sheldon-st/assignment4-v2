@@ -8,8 +8,12 @@ import java.util.HashMap;
  */
 public class IMEModel {
   public HashMap<String, IModel> images;
+
   public IModel currentImage;
   public HistogramModel currentHistogram;
+
+  public IModel editedImage;
+  public HistogramModel editedHistogram;
 
   /**
    * Constructor creates a blank hashmap to load images in.
@@ -39,6 +43,8 @@ public class IMEModel {
     currentImage = image;
     currentHistogram = new HistogramModel((SingleImageModel) image);
 
+    this.editedImage = image;
+    this.editedHistogram = new HistogramModel((SingleImageModel) image);
   }
 
   /**

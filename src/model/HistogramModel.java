@@ -99,11 +99,6 @@ public class HistogramModel {
      return histogramImage;
    }
 
-
-
-
-
-
   /**
    * Returns a JPanel component to visualize the histogram for the red, green, blue and intensity
    * values.

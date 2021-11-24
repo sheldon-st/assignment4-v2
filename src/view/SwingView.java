@@ -69,7 +69,7 @@ public class SwingView extends JFrame implements ActionListener, ItemListener, L
   public SwingView() {
     super();
     setTitle("Image Manager");
-    setSize(800, 400);
+    setSize(1028, 400);
 
     mainPanel = new JPanel();
 
@@ -95,7 +95,7 @@ public class SwingView extends JFrame implements ActionListener, ItemListener, L
     //show an image with a scrollbar
     JPanel imagePanel = new JPanel();
     //a border around the panel with a caption
-    imagePanel.setBorder(BorderFactory.createTitledBorder("Showing the histograms"));
+    imagePanel.setBorder(BorderFactory.createTitledBorder("Histogram [Original]"));
     imagePanel.setLayout(new GridLayout(1, 0, 10, 10));
     //imagePanel.setMaximumSize(null);
 
@@ -105,6 +105,20 @@ public class SwingView extends JFrame implements ActionListener, ItemListener, L
       imageScrollPane[i] = new JScrollPane(imageLabel[i]);
       imageScrollPane[i].setPreferredSize(new Dimension(256, 256));
       imagePanel.add(imageScrollPane[i]);
+    }
+
+    JPanel imagePanel2 = new JPanel();
+    //a border around the panel with a caption
+    imagePanel.setBorder(BorderFactory.createTitledBorder("Histogram [Edited]"));
+    imagePanel.setLayout(new GridLayout(1, 0, 10, 10));
+    //imagePanel.setMaximumSize(null);
+
+
+    for (int i = 0; i < images.length; i++) {
+      imageLabel[i] = new JLabel();
+      imageScrollPane[i] = new JScrollPane(imageLabel[i]);
+      imageScrollPane[i].setPreferredSize(new Dimension(256, 256));
+      imagePanel2.add(imageScrollPane[i]);
     }
 
     mainPanel.add(imagePanel);
